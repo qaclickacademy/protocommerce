@@ -22,7 +22,21 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Production Deployment Tips by [Galaxy Codes](www.galaxycodes.com):
+
+for deploying on specific route you need to add the route name `<myRoute>` in `navbar.component.html` links at starting path
+e.g `<myRoute>/shop`
+
+to build the project use the following commands:
+`npm install`
+`npm run ng -- build --base-href /<myRoute>/ --deploy-url /<myRoute>/`
+
+This will create all the compiled files in `/dist` folder
+
+replace the line `RewriteRule ^ /<myRoute>/index.html` in `.htaccess` file and copy it in `/dist` folder if needed.
+
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# protocommerce
+# Protocommerce
