@@ -1,0 +1,42 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<div class="" style="margin: auto auto 18px; padding: 20px; border: 2px dashed #ccc;" >
+    <div class="input-field col s12">
+    <label for="country">Please choose your delivery location. <br/>Then click on purchase button </label>
+    <input id="country" type="text" style="width: 300px" class="validate filter-input form-control" [(ngModel)]=query (keyup)=filter()>
+    <div class="lds-ellipsis" *ngIf="loadingBar"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="suggestions" *ngIf="filteredList.length">
+        <ul *ngFor="let item of filteredList" >
+            <li >
+                <a (click)="select(item)">{{item}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="checkbox checkbox-primary">
+        <input id="checkbox2" type="checkbox">
+        <label for="checkbox2">
+            I agree with the <a (click)="ngxSmartModalService.getModal('myModal').open()" style="cursor: pointer;color: #1d1dfb; text-decoration: underline;">term & Conditions</a>
+        </label>
+    </div>
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <input type="submit" class="btn btn-success btn-lg" value="Purchase">
+      </form>
+    <ngx-smart-modal #myModal identifier="myModal">
+      <h1 style="text-align: center; border-bottom: 1px solid;">Terms And Conditions</h1>
+      <p>Please read the following terms and conditions carefully as it sets out the terms of a legally binding agreement between you (the reader) and Business Standard Private Limited.</p>
+
+      <button (click)="myModal.close()" class="btn btn-info">Close</button>
+    </ngx-smart-modal>
+
+
+</div> 
+<br />
+
+<div *ngIf="isSubmitted">
+  <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> Thank you! Your order will be delivered in next few weeks :-).
+        </div>
+
+</div>
